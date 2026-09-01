@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/statisticalRL_experiments.egg-info/PKG-INFO
+src/statisticalRL_experiments.egg-info/SOURCES.txt
+src/statisticalRL_experiments.egg-info/dependency_links.txt
+src/statisticalRL_experiments.egg-info/requires.txt
+src/statisticalRL_experiments.egg-info/top_level.txt
+src/statisticalrl_experiments/__init__.py
+src/statisticalrl_experiments/analyzeRuns.py
+src/statisticalrl_experiments/fullExperiment.py
+src/statisticalrl_experiments/generictemplate.py
+src/statisticalrl_experiments/oneRun.py
+src/statisticalrl_experiments/parallelRuns.py
+src/statisticalrl_experiments/plotResults.py
+src/statisticalrl_experiments/practitioner_bandit_xp.py
+src/statisticalrl_experiments/utils.py

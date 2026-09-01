@@ -1,0 +1,44 @@
+
+pip freeze > requirements_full.txt
+## Remove unused packages from the list to generate requirements.txt
+
+git tag -a v1.250716.3 -m "testPyPI release"
+## Don't forget to push tags (not by default in git push):  git push origin --tags or tick "push tags' in PyCharm
+
+##When finalized: (use n version for TestPy and n1+ for Pypi)
+git tag -a v2.2507 -m "Official PyPI release"
+
+# Setup
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+
+# Build the package
+python -m build
+
+
+# Upload to TestPyPI (should be a new version, new file name etc)
+twine upload  --repository testpypi  -u __token__ -p <YOUR_TESTPYPI_TOKEN>  dist/*
+
+# After uploading to TestPyPI, test with:
+pip install -i https://test.pypi.org/simple/ statisticalRL-environments==1.2025.7.15
+or
+pip install --index-url https://test.pypi.org/simple/ statisticalRL-environments
+
+#Once setup, upload to real PYPI:
+
+# Upload to PyPI
+twine upload -u __token__ -p <YOUR_TESTPYPI_TOKEN>  dist/*
+
+#Then do:
+pip install statisticalRL-environments
+
+
+
+## To develop the package, create new Pycharm project from sub-folder "statisticalrl_environments", not direclty from root folder "environments".
+## Indeed, in the final package, the root will be sub-folder "statisticalrl_environments", so everything should be correctly named
+## and pycharm can't change working directroy to sub-directory (otherwise, we could simply manage one pycharm project, and indicate different work/root folder entrypoint).
+## Then, I have the surrounding files for package doc, readme, etc.
+
+## BIG TODO: If entry point is indeed statisticalrl_environments, then I shoul rename all src.statisticalrl_environments into statisticalrl_environments...

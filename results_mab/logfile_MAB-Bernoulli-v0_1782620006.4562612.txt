@@ -1,0 +1,10 @@
+Environment MAB-Bernoulli-v0
+Optimal policy is: [1]
+Learners ['TS', 'UCB']
+Time horizon is 1000, nb of replicates is 32
+TS average runtime is 0.034279465675354004
+UCB average runtime is 0.002489440143108368
+TS has regret 12.950000010662905 after 1000 time steps with quantiles 9.60000001066308 and 17.500000010662575
+UCB has regret 11.600000010663052 after 1000 time steps with quantiles 9.050000010663268 and 20.325000010662876
+
+Plots are depicted in files results_mab/Regret_TS_UCB__1000_MAB-Bernoulli-v0_1782620006.4562612.pdf/png, etc.

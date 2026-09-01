@@ -1,0 +1,14 @@
+# Environment & Dependencies
+.venv/
+venv/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS & IDE Files
+.DS_Store
+.vscode/
+.antigravitycli/

@@ -1,0 +1,13 @@
+Dynamic Practitioner Regret Experiment
+T=10000, N=100, sigma=1.0, eta=0.5
+
+TS average runtime per replicate: 0.0233s
+  Final Std Regret Mean: 139.45 (SEM: 10.00)
+  Final Prac Regret Mean: 28.84 (SEM: 1.22)
+
+UCB average runtime per replicate: 0.0089s
+  Final Std Regret Mean: 172.62 (SEM: 4.41)
+  Final Prac Regret Mean: 51.28 (SEM: 1.95)
+
+
+Plot saved in png and pdf formats.

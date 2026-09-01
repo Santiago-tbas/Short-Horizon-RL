@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reinforcement Learning Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🪐</span>
+                    <span class="logo-text">Statistical<span>RL</span></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-tab="overview">
+                        <span class="icon">📊</span> Overview &amp; Envs
+                    </li>
+                    <li class="nav-item" data-tab="epsilon-sweep">
+                        <span class="icon">⚡</span> Epsilon Sweep
+                    </li>
+                    <li class="nav-item" data-tab="regret-plots">
+                        <span class="icon">📈</span> MAB Regret Plots
+                    </li>
+                    <li class="nav-item" data-tab="gridworld-walk">
+                        <span class="icon">🗺️</span> Gridworld Steps
+                    </li>
+                    <li class="nav-item" data-tab="experiment-runner">
+                        <span class="icon">⚙️</span> Run Experiments
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="status-indicator online"></span> Server Active (Port 8000)
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h1 id="tab-title">Project Overview</h1>
+                    <p id="tab-description">Registered environments, architecture and setup details.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="refresh-btn">🔄 Sync Project Data</button>
+                </div>
+            </header>
+
+            <!-- Tab Content: Overview -->
+            <section class="tab-pane active" id="tab-overview">
+                <div class="grid-layout">
+                    <!-- Architecture Card -->
+                    <div class="card glass-card span-2">
+                        <div class="card-header">
+                            <h2>Project Architecture</h2>
+                            <span class="badge badge-primary">Structure</span>
+                        </div>
+                        <div class="card-body">
+                            <p>This workspace is a multi-package Python environment for Reinforcement Learning and Multi-Armed Bandit research:</p>
+                            <div class="architecture-flow">
+                                <div class="flow-step">
+                                    <h3>environments/</h3>
+                                    <p>Gymnasium wrappers for Stochastic MABs and Discrete Gridworlds.</p>
+                                </div>
+                                <div class="flow-arrow">➡️</div>
+                                <div class="flow-step">
+                                    <h3>learners/</h3>
+                                    <p>Algorithms like TS, UCB, IMED, PSRL, Q-Learning, and Leniency MABs.</p>
+                                </div>
+                                <div class="flow-arrow">➡️</div>
+                                <div class="flow-step">
+                                    <h3>experiments/</h3>
+                                    <p>Multicore runner, regret analysis, and matplotlib plot generators.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Environment Registry Card -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h2>Registered Environments</h2>
+                            <span class="badge badge-accent">Gymnasium</span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="env-list" id="envs-container">
+                                <li class="loading">Loading environments...</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project Files Summary Card -->
+                    <div class="card glass-card span-3">
+                        <div class="card-header">
+                            <h2>Key Entry Points</h2>
+                        </div>
+                        <div class="card-body file-grid">
+                            <div class="file-item">
+                                <span class="file-icon">🐍</span>
+                                <div class="file-details">
+                                    <h4>banditsxp_eps.py</h4>
+                                    <p>Epsilon-regret benchmark for Thompson Sampling and UCB on stochastic Bernoulli MABs.</p>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <span class="file-icon">🐍</span>
+                                <div class="file-details">
+                                    <h4>epsilon.py</h4>
+                                    <p>1D sweep-line simulation for optimal precision boundary computation.</p>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <span class="file-icon">🐍</span>
+                                <div class="file-details">
+                                    <h4>lenient_ts_experiment.py</h4>
+                                    <p>Recreation of lenient regret AAAI paper comparing TS vs. Epsilon-TS.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Content: Epsilon Sweep Simulator -->
+            <section class="tab-pane" id="tab-epsilon-sweep">
+                <div class="grid-layout">
+                    <!-- Controls Card -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h2>Simulation Parameters</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="control-group">
+                                <label for="param-t">Time Horizon (T): <span id="val-t">5000</span></label>
+                                <input type="range" id="param-t" min="10" max="10000" step="50" value="5000">
+                            </div>
+                            <div class="control-group">
+                                <label for="param-sigma">Noise Scale (σ): <span id="val-sigma">1.0</span></label>
+                                <input type="range" id="param-sigma" min="0.1" max="3.0" step="0.1" value="1.0">
+                            </div>
+                            <div class="control-group">
+                                <label for="param-eta">Tolerance (η): <span id="val-eta">0.5</span></label>
+                                <input type="range" id="param-eta" min="0.01" max="1.0" step="0.05" value="0.5">
+                            </div>
+                            
+                            <div class="info-box">
+                                <h3>Boundary Formula:</h3>
+                                <p class="math-expr">c_T = √((2 * σ² * ln(T)) / (η * T))</p>
+                                <p><strong>Epsilon (ε*)</strong> is the largest gap where consecutive sorted sub-optimality gaps satisfy:</p>
+                                <p class="math-expr">Δ_{i+1} - Δ_i ≤ c_T</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visualization Card -->
+                    <div class="card glass-card span-2">
+                        <div class="card-header">
+                            <h2>Precision Boundary Visualization</h2>
+                            <div class="boundary-stats">
+                                <span>c_T: <strong id="stat-ct">0.0000</strong></span>
+                                <span>ε*: <strong id="stat-eps">0.0000</strong></span>
+                            </div>
+                        </div>
+                        <div class="card-body viz-container-wrapper">
+                            <div class="viz-canvas-container">
+                                <div class="viz-axis"></div>
+                                <div class="viz-band" id="viz-band-element"></div>
+                                <div class="viz-boundary" id="viz-boundary-line"></div>
+                                <div class="viz-gaps-layer" id="viz-gaps-layer">
+                                    <!-- Gaps dots rendered dynamically -->
+                                </div>
+                            </div>
+                            <div class="viz-legend">
+                                <div class="legend-item"><span class="dot dot-green"></span> Indistinguishable (≤ ε*)</div>
+                                <div class="legend-item"><span class="dot dot-red"></span> Under Band (ε* < Δ ≤ ε* + c_T)</div>
+                                <div class="legend-item"><span class="dot dot-blue"></span> Distinguishable (> ε* + c_T)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Content: MAB Regret Plots -->
+            <section class="tab-pane" id="tab-regret-plots">
+                <div class="grid-layout">
+                    <div class="card glass-card span-3">
+                        <div class="card-header">
+                            <h2>Simulation Result Plots (results_mab/)</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="plots-browser-layout">
+                                <div class="plots-sidebar">
+                                    <ul id="plots-list" class="plots-menu">
+                                        <li class="loading">Loading plots...</li>
+                                    </ul>
+                                </div>
+                                <div class="plot-display-area">
+                                    <div class="plot-image-container" id="plot-viewport">
+                                        <div class="placeholder-text">Select a plot to view it</div>
+                                    </div>
+                                    <div class="plot-details-panel" id="plot-details">
+                                        <!-- Details populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Content: Gridworld Walkthrough -->
+            <section class="tab-pane" id="tab-gridworld-walk">
+                <div class="grid-layout">
+                    <div class="card glass-card span-3">
+                        <div class="card-header">
+                            <h2>Gridworld Agent Trajectory</h2>
+                            <div class="trajectory-controls">
+                                <button class="btn btn-sm" id="traj-prev">◀ Prev</button>
+                                <span class="step-counter">Step: <strong id="traj-step-num">0</strong> / <strong id="traj-total-steps">0</strong></span>
+                                <button class="btn btn-sm" id="traj-next">Next ▶</button>
+                                <button class="btn btn-sm btn-secondary" id="traj-play">Play Auto</button>
+                            </div>
+                        </div>
+                        <div class="card-body trajectory-body">
+                            <div class="trajectory-image-view">
+                                <img src="" alt="Gridworld frame" id="trajectory-frame-img" style="max-height: 480px; border-radius: 8px;">
+                                <div class="trajectory-loading" id="trajectory-loading-overlay" style="display:none;">Loading frame...</div>
+                            </div>
+                            <div class="trajectory-meta">
+                                <h3>Trajectoria en Gridworld</h3>
+                                <p>This slideshow reconstructs the step-by-step movement of a reinforcement learning agent solving the Gridworld maze environment, as registered in the `screenshots` folder.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Content: Live Experiment Runner -->
+            <section class="tab-pane" id="tab-experiment-runner">
+                <div class="grid-layout">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h2>Select Experiment</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="exp-runner-option" data-script="banditsxp_eps.py">
+                                <h3>banditsxp_eps.py</h3>
+                                <p>Evaluate TS vs. UCB under optimal ε* boundary.</p>
+                            </div>
+                            <div class="exp-runner-option" data-script="experiments/src/lenient_ts_experiment.py">
+                                <h3>lenient_ts_experiment.py</h3>
+                                <p>Compare standard Thompson Sampling vs. Epsilon-TS (Lenient TS).</p>
+                            </div>
+                            <button class="btn btn-primary w-full mt-4" id="run-exp-btn" disabled>Launch Selected Experiment</button>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card span-2">
+                        <div class="card-header">
+                            <h2>Execution Terminal Log</h2>
+                            <span class="badge" id="terminal-status">Idle</span>
+                        </div>
+                        <div class="card-body console-wrapper">
+                            <pre class="console-output" id="terminal-output">Select an experiment and click launch to run. Output will be displayed here...</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

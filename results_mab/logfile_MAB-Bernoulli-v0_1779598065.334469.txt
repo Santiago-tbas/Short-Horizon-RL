@@ -1,0 +1,14 @@
+Environment MAB-Bernoulli-v0
+Optimal policy is: [1]
+Learners ['Random', 'TS', 'UCB', 'IMED']
+Time horizon is 1000, nb of replicates is 32
+Random average runtime is 0.060873597860336304
+TS average runtime is 0.011851906776428223
+UCB average runtime is 0.015170671045780182
+IMED average runtime is 0.018637508153915405
+Random has regret 302.300000010652 after 1000 time steps with quantiles 296.3500000106521 and 309.20000001065216
+TS has regret 14.950000010662166 after 1000 time steps with quantiles 10.850000010662768 and 18.975000010662797
+UCB has regret 12.05000001066145 after 1000 time steps with quantiles 9.175000010663439 and 17.125000010661637
+IMED has regret 15.550000010662814 after 1000 time steps with quantiles 10.575000010663132 and 19.800000010662217
+
+Plots are depicted in files results_mab/Regret_Random_TS_UCB_IMED__1000_MAB-Bernoulli-v0_1779598065.334469.pdf/png, etc.

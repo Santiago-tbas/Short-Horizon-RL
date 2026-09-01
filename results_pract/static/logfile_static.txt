@@ -1,0 +1,13 @@
+Static Practitioner Regret Experiment
+T=10000, N=100, epsilon*=0.050000, c_T=0.060684
+
+TS average runtime per replicate: 0.0222s
+  Final Std Regret Mean: 139.45 (SEM: 10.00)
+  Final Prac Regret Mean: 48.14 (SEM: 1.54)
+
+UCB average runtime per replicate: 0.0081s
+  Final Std Regret Mean: 172.62 (SEM: 4.41)
+  Final Prac Regret Mean: 74.23 (SEM: 2.32)
+
+
+Plots saved in png and pdf formats.

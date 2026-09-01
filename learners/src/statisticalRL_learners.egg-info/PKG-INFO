@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: statisticalRL-learners
+Version: 2.2507
+Summary: Learners for the Statistical Reinforcement Learning project
+Author-email: Odalric-Ambym Maillard <odalric.maillard@inria.fr>
+License: MIT
+Project-URL: Homepage, https://github.com/StatisticalRL/learners
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: six==1.16.0
+Requires-Dist: gymnasium==1.2.0
+Requires-Dist: numpy==1.24.3
+Requires-Dist: networkx==2.8.8
+Requires-Dist: matplotlib==3.7.2
+Requires-Dist: scipy==1.15.2
+Requires-Dist: pydot==1.4.2
+Dynamic: license-file
+
+# Learners
+Learning Agents for Statistical Reinforcement Learning
+
+
+## Installation
+
+    pip install statisticalRL-learners
+
+
+## Test
+You need to install statisticalRL-environments and statisticalRL-experiments before testing.
+
+    pip install statisticalRL-environments
+    pip install statisticalRL-experiments
+
+
+# List of learners:
+    
+    
+    Random
+    Human
+    Uniform
+
+    MABs:
+        MABOracle
+        FTL
+        UCB
+        TS
+        IMED
+        BESA
+    MDPs_dicrete:
+        MDPOracle
+        QLearning
+        AdaQLearning
+        IMED-RL
+        KL-UCRL
+        MED-RL
+        PSRL
+        UCRL2
+        UCRL2.2
+        UCRL2B
+        UCRL2B-detR
+        UCRL3
+        UCRL3-lazy
+        Known dynamics:
+            IMED-KD
+            PSRL-KD
+            TS-KD
+            UCB-KD
+            UCRL3-KD
+            UCRL3-KD-lazy
+        Equivalence structure:
+            CUCRL
+            CUCRL-detR
+            UCRL_SA_oracle
+            UCRL_SA
+
+
+# Usage
+
+You can run an instance of a learner on an environment from StatisticalRL library.

@@ -1,0 +1,19 @@
+[tool.pyrefly]
+# Disable strict type checking — module paths are resolved dynamically
+# via sys.path.insert in each script, which pyrefly cannot follow statically.
+project_includes = [
+    ".",
+    "experiments/src",
+    "learners/src",
+    "environments/src",
+]
+python_version = "3.9"
+
+[tool.pyrefly.errors]
+# Suppress errors arising from dynamic imports and out-of-context analysis
+import-error = false
+missing-attribute = false
+bad-argument-type = false
+bad-return-type = false
+not-a-callable = false
+undefined-import-alias = false
