@@ -1,10 +1,10 @@
 MIT License
 
-Copyright (c) 2026 Edison Santiago Tutalcha Bastidas
+Copyright (c) 2026 Santiago Tutalcha
 
-Portions of this software (specifically modules in `environments/`, `learners/`, and `experiments/src/`) 
-are derived from and build upon the StatisticalRL open-source project:
-Copyright (c) 2025 StatisticalRL (https://github.com/StatisticalRL)
+Portions of this repository (specifically modules in `environments/`, `learners/`, and `experiments/src/`)
+are derived from the StatisticalRL open-source project (https://github.com/StatisticalRL):
+Copyright (c) 2025 StatisticalRL
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
