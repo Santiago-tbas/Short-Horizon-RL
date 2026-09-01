@@ -22,7 +22,6 @@ A research codebase for evaluating multi-armed bandit (MAB) algorithms and reinf
 ├── learners/                # MAB and RL algorithm implementations (StatisticalRL framework)
 ├── experiments/             # Benchmark scripts and experiment configurations
 │   └── PRACTITIONER REGRET/ # Practitioner regret experiments and dynamic epsilon models
-├── Notes & PDF/             # Theoretical derivations, documentation, and notes
 ├── results_mab/             # Generated figures, plots, and logs for MAB experiments
 └── results_pract/           # Output metrics, plots, and data for practitioner regret runs
 ```
