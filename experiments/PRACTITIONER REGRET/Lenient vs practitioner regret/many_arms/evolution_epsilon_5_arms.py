@@ -1,8 +1,9 @@
 import os
 import sys
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 
 _HERE = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(_HERE, '../../Epsilon'))
