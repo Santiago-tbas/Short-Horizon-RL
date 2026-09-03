@@ -25,7 +25,6 @@ class ScenarioDict(TypedDict):
     name: str
     title: str
     mu: np.ndarray
-    pos: Tuple[int, int]
     ylim_top: float
 
 
@@ -87,7 +86,7 @@ def main():
     mu_5 = np.array([0.9, 0.82, 0.7, 0.4, 0.2])
 
     scenarios: List[ScenarioDict] = [
-        {"name": "S1", "title": r"5 Arms Distribution: $\mu=[0.9, 0.82, 0.7, 0.4, 0.2]$", "mu": mu_5, "pos": (0,), "ylim_top": 80.0},
+        {"name": "S1", "title": r"5 Arms Distribution: $\mu=[0.9, 0.82, 0.7, 0.4, 0.2]$", "mu": mu_5, "ylim_top": 80.0},
     ]
 
     agents = [

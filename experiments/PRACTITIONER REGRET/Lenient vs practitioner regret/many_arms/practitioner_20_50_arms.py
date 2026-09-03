@@ -25,7 +25,7 @@ class ScenarioDict(TypedDict):
     name: str
     title: str
     mu: np.ndarray
-    pos: Tuple[int, int]
+    pos: Tuple[int, ...]
     ylim_top: float
 
 
